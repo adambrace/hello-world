@@ -23,4 +23,4 @@ if($matched) {
 } else {            
     Write-Host "Something Messed up. Better go review!"            
 }
-Read-Host -Prompt “Press Enter to exit”
+Read-Host -Prompt "Press Enter to exit"
