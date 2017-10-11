@@ -1,6 +1,4 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Metadata: 
-  License: Apache-2.0
 Description: 'Quick and dirty Hello-world instance based stack'
 Parameters:
   InstanceType:
@@ -63,11 +61,6 @@ Parameters:
     Default: t2.micro
     Description: WebServer EC2 instance type
     Type: String
-  KeyName:
-    ConstraintDescription: must be the name of an existing EC2 KeyPair.
-    Description: Name of an existing EC2 KeyPair to enable SSH access to the instances
-    Type: AWS::EC2::KeyPair::KeyName
-    Default: helloworld
   VPCBlock:
     Description: 10.2.0.0/16 = 10.2.0.0-10.2.255.255 = 256 Subnets = 65534 hosts
     Type: String
@@ -431,8 +424,6 @@ Resources:
       ImageId: !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch, !Ref InstanceType, Arch]]      
       InstanceType:
         Ref: InstanceType
-      KeyName:
-        Ref: KeyName
       SubnetId: !Ref PublicSubnet
       SecurityGroupIds: 
         - !GetAtt WebServerSecurityGroup.GroupId
